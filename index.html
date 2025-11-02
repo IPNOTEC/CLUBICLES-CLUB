@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUBICLES - MEMBERSHIP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose-gold: #8A2BE2; /* Changed to a Violet/Purple for CLUBICLES */
+            --rose-gold-light: #B873FF;
+            --rose-gold-dark: #6B00B3;
+            --dark-green: #011A10;
+            --darker-green: #001009;
+            --darkest-green: #000705;
+            --white: #FFFFFF;
+            --black: #000000;
+            --grey: #777777;
+            --grid-color: rgba(138, 43, 226, 0.1); /* Violet grid */
+            --neon-glow: 0 0 10px currentColor;
+            --pc-bezel: #111111;
+            --active-color: #8A2BE2; /* Active color is now Violet */
+            
+            /* VIBGYOR Colors for Member Portal */
+            --violet: #9400D3;
+            --indigo: #4B0082;
+            --blue: #0000FF;
+            --green: #00FF00;
+            --yellow: #FFFF00;
+            --orange: #FF7F00;
+            --red: #FF0000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--darkest-green);
+            color: var(--white);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+        
+        .wallpaper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 50%, 
+                var(--dark-green) 0%, 
+                var(--darkest-green) 70%);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .cyber-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(138, 43, 226, 0.6); /* Violet particles */
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        .glow-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--rose-gold), 
+                transparent);
+            filter: drop-shadow(0 0 5px var(--rose-gold));
+            animation: scan 8s infinite linear;
+            z-index: 1;
+        }
+        
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        
+        .virtual-pc {
+            width: 95%;
+            max-width: 1400px;
+            height: 90vh;
+            background: var(--pc-bezel);
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(138, 43, 226, 0.3); /* Violet shadow */
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--active-color);
+        }
+        
+        .pc-screen {
+            width: calc(100% - 40px);
+            height: calc(100% - 100px);
+            margin: 20px auto 10px;
+            background: #000;
+            border: 1px solid rgba(138, 43, 226, 0.3); /* Violet border */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pc-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, 
+                var(--dark-green) 0%, 
+                var(--darkest-green) 70%);
+        }
+        
+        .pc-footer {
+            width: 100%;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .pc-branding {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--rose-gold);
+            letter-spacing: 2px;
+        }
+        
+        .pc-model {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--white);
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        .pc-power {
+            width: 40px;
+            height: 20px;
+            background: rgba(51, 51, 51, 0.7);
+            border: 1px solid var(--rose-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--rose-gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        
+        .pc-power.on {
+            background: rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+            color: var(--rose-gold);
+            text-shadow: 0 0 5px var(--rose-gold);
+        }
+        
+        .pc-power.off {
+            background: rgba(51, 51, 51, 0.7);
+            color: rgba(138, 43, 226, 0.5);
+        }
+        
+        .main-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2vh 5vw;
+            z-index: 2;
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin-top: 2vh;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            color: var(--rose-gold);
+            text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+            letter-spacing: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            animation: pulse 4s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 30px rgba(138, 43, 226, 0.5); }
+            100% { text-shadow: 0 0 50px rgba(138, 43, 226, 0.8); }
+        }
+        
+        .tagline {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--white);
+            letter-spacing: 4px;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+        
+        .terminal-window {
+            width: 90%;
+            max-width: 800px;
+            height: 35vh; /* Adjusted height */
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .terminal-header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        .terminal-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .btn-red { background: #FF5F56; }
+        .btn-yellow { background: #FFBD2E; }
+        .btn-green { background: #27C93F; }
+        
+        .terminal-title {
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--rose-gold);
+        }
+        
+        .terminal-body {
+            padding: 1.5rem;
+            height: calc(100% - 38px);
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .command {
+            color: var(--rose-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .response {
+            margin-bottom: 1.5rem;
+            white-space: pre-wrap;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background-color: var(--rose-gold);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .enter-btn {
+            background: transparent;
+            border: 2px solid var(--rose-gold);
+            color: var(--rose-gold);
+            padding: 0.6rem 1.5rem; /* Adjusted padding */
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem; /* Adjusted font size */
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.4rem; /* Adjusted margin */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .enter-btn:hover {
+            background: rgba(138, 43, 226, 0.1);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+        }
+        
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.4), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .enter-btn:hover::before {
+            left: 100%;
+        }
+        
+        .boot-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .boot-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--rose-gold);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .boot-progress {
+            width: 60%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .boot-progress-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--rose-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .boot-status {
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            color: var(--white);
+            font-size: 1rem;
+        }
+        
+        /* App Window Styles */
+        .app-window {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
+            height: 85%;
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid var(--active-color);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+            overflow: hidden;
+            display: none;
+            z-index: 20;
+        }
+        
+        .app-header {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.8rem 1.2rem;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        .app-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .app-btn {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .app-title {
+            flex-grow: 1;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: var(--rose-gold);
+        }
+        
+        .app-body {
+            padding: 1.5rem;
+            height: calc(100% - 46px);
+            overflow-y: auto;
+            font-size: 1.1rem;
+        }
+        
+        /* Member Portal Styles */
+        .portal-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .portal-header {
+            text-align: center;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+        
+        .portal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--rose-gold);
+            text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+            letter-spacing: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .portal-subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--white);
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+        
+        .vision-statement {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--rose-gold);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vision-statement h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--rose-gold);
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .vision-statement p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .vision-statement .highlight {
+            color: var(--rose-gold-light);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* Member Grid */
+        .members-section {
+            margin: 2rem 0;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .member-card {
+            background: rgba(10, 10, 10, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+        }
+        
+        .member-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--member-color);
+            z-index: 2;
+        }
+        
+        .member-header {
+            padding: 1rem;
+            position: relative;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+        }
+        
+        .member-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: var(--rose-gold);
+            margin-bottom: 0.3rem;
+        }
+        
+        .member-role {
+            color: var(--rose-gold-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .member-body {
+            padding: 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .member-card.open .member-body {
+            max-height: 500px;
+        }
+        
+        .member-vehicle {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .vehicle-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.8rem;
+            font-size: 1.3rem;
+            color: var(--rose-gold);
+        }
+        
+        .vehicle-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+            color: var(--rose-gold);
+        }
+        
+        .vehicle-info p {
+            font-size: 0.85rem;
+            color: var(--rose-gold-light);
+        }
+        
+        .member-bio {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        
+        .member-stats {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            color: var(--rose-gold);
+            margin-bottom: 0.2rem;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--rose-gold-light);
+            text-transform: uppercase;
+        }
+        
+        .member-footer {
+            padding: 0.8rem 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .social-links a {
+            color: var(--rose-gold);
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--rose-gold-light);
+        }
+        
+        .member-tag {
+            background: var(--member-color);
+            color: var(--white);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--rose-gold);
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--rose-gold);
+            border-radius: 4px;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background: var(--rose-gold);
+            color: var(--darkest-green);
+            border: none;
+            padding: 1rem 2rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background: var(--rose-gold-light);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+        }
+        
+        /* Persistent Tab Styles */
+        .persistent-tab {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 2px solid var(--rose-gold);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .tab-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .tab-logo {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--rose-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        .tab-message {
+            flex-grow: 1;
+            font-size: 0.9rem;
+            color: var(--white);
+        }
+        
+        .founder-highlight {
+            color: var(--rose-gold);
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+        }
+        
+        .tab-button {
+            background: var(--rose-gold);
+            color: var(--darkest-green);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tab-button:hover {
+            background: var(--rose-gold-light);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+        
+        /* NEW BENEFITS STYLES */
+        .club-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .club-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--rose-gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .club-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--rose-gold-light);
+            margin-bottom: 2rem;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--rose-gold);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 180px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--rose-gold);
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .quote-box {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            border-left: 4px solid var(--rose-gold);
+            background: rgba(0, 0, 0, 0.3);
+            font-style: italic;
+            font-size: 1.4rem;
+            line-height: 1.6;
+        }
+        
+        .content-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border: 1px solid var(--rose-gold);
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--rose-gold);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--rose-gold);
+        }
+        
+        .highlight {
+            background: rgba(138, 43, 226, 0.1);
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--rose-gold);
+        }
+        
+        .scenario {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--rose-gold);
+        }
+
+        .scenario:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .scenario-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--rose-gold);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .scenario-value {
+            font-weight: bold;
+            color: var(--rose-gold-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .scenario-list {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+        
+        .scenario-list li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .scenario-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--rose-gold);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .team-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--rose-gold);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+        }
+        
+        .team-icon {
+            font-size: 2rem;
+            color: var(--rose-gold);
+            margin-bottom: 1rem;
+        }
+        
+        .team-role {
+            font-weight: 700;
+            color: var(--rose-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* NEW BENEFITS GRID STYLES */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--rose-gold);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--rose-gold);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .benefit-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--rose-gold);
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .benefit-list li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.8rem;
+        }
+        
+        .benefit-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--rose-gold);
+            font-weight: bold;
+        }
+        
+        .highlight-card {
+            background: rgba(138, 43, 226, 0.1);
+            border: 2px solid var(--rose-gold);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+        }
+        
+        .highlight-card .benefit-icon {
+            color: var(--rose-gold-light);
+            text-shadow: 0 0 10px var(--rose-gold);
+        }
+        
+        /* --- NEW STYLES FOR CLUBICLES --- */
+
+        /* Chat Window Styles */
+        .chat-display {
+            height: calc(100% - 60px);
+            overflow-y: auto;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        .chat-message {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .chat-sender {
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+        .chat-input-area {
+            display: flex;
+            height: 40px;
+        }
+        .chat-input-area input {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        .chat-input-area button {
+            background: var(--rose-gold);
+            color: var(--darkest-green);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        /* VIBGYOR Colors */
+        .c-violet { color: var(--violet); }
+        .c-indigo { color: var(--indigo); }
+        .c-blue { color: var(--blue); }
+        .c-green { color: var(--green); }
+        .c-yellow { color: var(--yellow); }
+        .c-orange { color: var(--orange); }
+        .c-red { color: var(--red); }
+        .c-system { color: var(--rose-gold-light); }
+
+        /* DigiPin Style */
+        .digipin {
+            display: inline-block;
+            background: rgba(138, 43, 226, 0.2);
+            border: 1px solid var(--rose-gold);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: bold;
+            color: var(--rose-gold-light);
+        }
+
+        /* Ops & Finance Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .data-table th {
+            background: rgba(138, 43, 226, 0.2);
+            color: var(--rose-gold-light);
+            font-family: 'Orbitron', sans-serif;
+        }
+        .data-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .data-table .status-discussions { color: var(--yellow); }
+        .data-table .status-docs { color: var(--orange); }
+        .data-table .status-legal { color: var(--red); }
+        .data-table .status-soon { color: var(--green); }
+        .data-table .status-success { color: var(--green); }
+        .data-table .status-pending { color: var(--yellow); }
+
+        /* Update Log Styles */
+        .update-log {
+            list-style: none;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+        }
+        .update-log li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed rgba(138, 43, 226, 0.3);
+        }
+        .update-log .log-fix { color: var(--green); }
+        .update-log .log-update { color: var(--blue); }
+        .update-log .log-issue { color: var(--red); }
+        .update-log .log-time { color: var(--grey); display: block; margin-bottom: 5px; }
+
+
+        /* Calculator Styles */
+        .calc-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .calc-inputs, .calc-outputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .calc-group label {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .calc-group input {
+            font-size: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .calc-output-box {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--rose-gold);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .calc-output-box label {
+            font-size: 0.9rem;
+            color: var(--rose-gold-light);
+            text-transform: uppercase;
+        }
+        .calc-output-box div {
+            font-size: 2rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--white);
+            margin-top: 0.5rem;
+        }
+        .calc-output-box.highlight {
+            background: rgba(138, 43, 226, 0.1);
+        }
+        .calc-output-box.highlight div {
+            color: var(--rose-gold-light);
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .virtual-pc {
+                height: 95vh;
+                width: 98%;
+            }
+            
+            .pc-screen {
+                height: calc(100% - 80px);
+            }
+            
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .persistent-tab {
+                padding: 8px 0;
+            }
+            
+            .tab-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .tab-button {
+                width: 100%;
+            }
+            
+            .stats-container {
+                gap: 15px;
+            }
+            
+            .stat-box {
+                min-width: 140px;
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .stat-label {
+                font-size: 1rem;
+            }
+            
+            .quote-box {
+                font-size: 1.1rem;
+                padding: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .calc-container {
+                grid-template-columns: 1fr;
+            }
+
+            .terminal-window {
+                height: 40vh;
+            }
+
+            .main-content {
+                padding: 1vh 3vw;
+            }
+
+            .enter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+                margin: 0.3rem;
+            }
+
+            .tagline {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wallpaper">
+        <div class="cyber-grid"></div>
+        <div class="particles" id="particles"></div>
+        <div class="glow-line" style="width: 80%; left: 10%"></div>
+        <div class="glow-line" style="width: 60%; left: 20%; animation-delay: -2s"></div>
+        
+        <div class="virtual-pc" id="virtualPc">
+            <div class="pc-screen">
+                <div class="pc-content">
+                    <div class="boot-screen" id="bootScreen">
+                        <div class="boot-logo">
+                            CLUBICLES<br>
+                            <span style="font-size: 1rem;">GLOBAL COWORKING NETWORK</span>
+                        </div>
+                        <div class="boot-progress">
+                            <div class="boot-progress-bar" id="bootProgress"></div>
+                        </div>
+                        <div class="boot-status" id="bootStatus">Initializing hardware...</div>
+                    </div>
+                    
+                    <div class="main-content" id="mainContent" style="display: none;">
+                        <div class="logo-section">
+                            <h1>CLUBICLES</h1>
+                            <div class="tagline">COWORKING MOBILITY REDEFINED</div>
+                            
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                                <button class="enter-btn" onclick="openApp('memberPortal')">MEMBER PORTAL</button>
+                                <button class="enter-btn" onclick="openApp('benefits')">MEMBERSHIP BENEFITS</button>
+                                <button class="enter-btn" onclick="openApp('applicationForm')">JOIN CLUBICLES</button>
+                            </div>
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+                                <button class="enter-btn" onclick="openApp('mainChat')">COMMUNITY CHAT</button>
+                                <button class="enter-btn" onclick="openApp('scoutChat')">SCOUT LOG</button>
+                                <button class="enter-btn" onclick="openApp('alphaTeam')">ALPHA OPS</button>
+                            </div>
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+                                <button class="enter-btn" onclick="openApp('payments')">FINANCE</button>
+                                <button class="enter-btn" onclick="openApp('updates')">SYSTEM STATUS</button>
+                                <button class="enter-btn" onclick="openApp('calculator')">VALUATION CALC</button>
+                            </div>
+                        </div>
+                        
+                        <div class="terminal-window" id="terminalWindow" style="display: none;">
+                            <div class="terminal-header">
+                                <div class="terminal-buttons">
+                                    <div class="terminal-btn btn-red"></div>
+                                    <div class="terminal-btn btn-yellow"></div>
+                                    <div class="terminal-btn btn-green"></div>
+                                </div>
+                                <div class="terminal-title">CLUBICLES TERMINAL</div>
+                                <div style="width: 54px;"></div>
+                            </div>
+                            <div class="terminal-body" id="terminalBody">
+                                <div class="command">> INITIALIZING SYSTEM...</div>
+                                <div class="response">
+CLUBICLES OS v1.0
+-----------------------
+LOADING GLOBAL COWORKING ECOSYSTEM...
+<span style="color: var(--rose-gold);">SYSTEM READY</span>
+                                </div>
+                                
+                                <div class="command">> DISPLAY WELCOME MESSAGE</div>
+                                <div class="response">
+WELCOME TO CLUBICLES
+-----------------------
+COWORKING SPACES FROM ANY CORNER OF THE WORLD
+WHERE MOBILITY MEETS COLLABORATION
+
+<span style="color: var(--rose-gold);">MEMBERSHIP PROGRAM:</span>
+₹1 LAKH INVESTMENT • 30% BOOKING DISCOUNT • 7% OWNERSHIP POOL
+
+<span style="color: var(--rose-gold);">AVAILABLE COMMANDS:</span>
+> MEMBER PORTAL
+> MEMBERSHIP BENEFITS
+> JOIN CLUBICLES
+> COMMUNITY CHAT
+> ... (See all app buttons)
+                                </div>
+                                
+                                <div class="command">> CONNECT USER<span class="cursor"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pc-footer">
+                <div class="pc-branding">CLUBICLES VIRTUAL SYSTEM</div>
+                <div class="pc-model">MEMBERSHIP</div>
+                <div class="pc-power off" id="pcPower">
+                    CL
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="persistent-tab" id="persistentTab">
+        <div class="tab-content">
+            <div class="tab-logo">CLUBICLES PORTAL</div>
+            <div class="tab-message">
+                Become part of a global co-working network. 
+                Invest ₹1 Lakh to get a 30% discount and a 7% share in CLUBICLES LLP LTD.
+            </div>
+            <button class="tab-button" onclick="openApp('applicationForm')">
+                JOIN NOW
+            </button>
+        </div>
+    </div>
+
+    <div class="app-window" id="memberPortal">
+        <div class="app-header">
+            <div class="app-buttons">
+                <div class="app-btn btn-red" onclick="closeApp('memberPortal')"></div>
+                <div class="app-btn btn-yellow"></div>
+                <div class="app-btn btn-green"></div>
+            </div>
+            <div class="app-title">CLUBICLES MEMBER PORTAL</div>
+        </div>
+        <div class="app-body">
+            <div class="portal-container">
+                <div class="portal-header">
+                    <h1 class="portal-title">CLUBICLES</h1>
+                    <div class="portal-subtitle">UNITING GLOBAL NOMADS & VISIONARIES</div>
+                </div>
+                
+                <div class="vision-statement">
+                    <h2>OUR VISION & VALUE</h2>
+                    <p>
+                        At CLUBICLES, we are building a collaborative platform bringing people from all walks 
+                        of life to build an <span class="highlight">organized network of co-working spaces</span> 
+                        (CLUBICLES) available from any corner of the world.
+                    </p>
+                    <p>
+                        Our members are not just users; they are co-owners. The Membership Club collectively 
+                        holds a <span class="highlight">7% stake in CLUBICLES LLP LTD</span>, 
+                        aligning our growth with your success.
+                    </p>
+                    <p>
+                        We unite digital nomads, entrepreneurs, space owners, and adventurers (our Scout Team) 
+                        who share a passion for innovation, mobility, and a new way of working.
+                    </p>
+                </div>
+                
+                <div class="members-section">
+                    <h2 class="section-title">THE CORE TEAM & ALPHA CIRCLE</h2>
+                    <div class="members-grid" id="membersGrid">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-window" id="benefits">
+        <div class="app-header">
+            <div class="app-buttons">
+                <div class="app-btn btn-red" onclick="closeApp('benefits')"></div>
+                <div class="app-btn btn-yellow"></div>
+                <div class="app-btn btn-green"></div>
+            </div>
+            <div class="app-title">MEMBERSHIP BENEFITS | WHY JOIN CLUBICLES</div>
+        </div>
+        <div class="app-body">
+            <div class="club-header">
+                <h2 class="club-title">CLUBICLES MEMBERSHIP</h2>
+                <div class="club-subtitle">₹1 Lakh Membership • 30% Discount • 7% Ownership Stake</div>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-number">1LK</div>
+                        <div class="stat-label">Fee</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">7%</div>
+                        <div class="stat-label">Ownership</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">30%</div>
+                        <div class="stat-label">Discount</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+                
+                <div class="quote-box">
+                    "WE'RE BUILDING THE WORLD'S FIRST TRULY COLLABORATIVE CO-WORKING NETWORK, WHERE YOUR MEMBERSHIP ISN'T JUST A FEE—IT'S AN OWNERSHIP STAKE."
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h3 class="section-title">Membership Tiers & Benefits</h3>
+                <p>CLUBICLES offers multiple ways to engage with our ecosystem. All paid members join the 7% ownership pool.</p>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card highlight-card">
+                        <div class="benefit-icon"><i class="fas fa-user-tie"></i></div>
+                        <h3 class="benefit-title">Club Member</h3>
+                        <ul class="benefit-list">
+                            <li>₹1 Lakh one-time fee</li>
+                            <li>Joins 7% Ownership Pool</li>
+                            <li>30% discount on all bookings</li>
+                            <li>24/7 Member Support</li>
+                            <li>Fee withdrawable anytime*</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-building"></i></div>
+                        <h3 class="benefit-title">Space Owner</h3>
+                        <ul class="benefit-list">
+                            <li>List up to 3 co-working spaces</li>
+                            <li>Use platform for bookings & data</li>
+                            <li>Access to annual reports</li>
+                            <li>Members get 24hr space activation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-motorcycle"></i></div>
+                        <h3 class="benefit-title">Scout Team</h3>
+                        <ul class="benefit-list">
+                            <li>Adventurous biker members</li>
+                            <li>Scout new potential locations</li>
+                            <li>Help expand the CLUBICLES network</li>
+                            <li>Earn rewards for successful launches</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h3 class="section-title">HOW IT WORKS</h3>
+                <div class="scenario">
+                    <h4 class="scenario-title">1. Join as a Member</h4>
+                    <p>Invest ₹1 Lakh to become a member. You instantly get a 30% discount on all bookings and become part of the 7% ownership pool of CLUBICLES LLP LTD.</p>
+                </div>
+                <div class="scenario">
+                    <h4 class="scenario-title">2. List as a Space Owner</h4>
+                    <p>If you own a space, you can use our platform for bookings and data management. If you are also a paid member, your space gets 24-hour activation and 24/7 support.</p>
+                </div>
+                <div class="scenario">
+                    <h4 class="scenario-title">3. Explore as a Scout</h4>
+                    <p>Join our Scout Team to find and verify new locations for co-working spaces, helping us grow our global network from the ground up.</p>
+                </div>
+                <div class="scenario">
+                    <h4 class="scenario-title">4. Membership Withdrawal</h4>
+                    <ul class="scenario-list">
+                        <li>Your ₹1 Lakh membership fee can be withdrawn at any time.</li>
+                        <li>Upon withdrawal, you lose access to all membership features (discounts, ownership, etc.).</li>
+                        <li>If withdrawn within the first 12 months, a ₹10,000 processing fee applies.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-window" id="applicationForm">
+        <div class="app-header">
+            <div class="app-buttons">
+                <div class="app-btn btn-red" onclick="closeApp('applicationForm')"></div>
+                <div class="app-btn btn-yellow"></div>
+                <div class="app-btn btn-green"></div>
+            </div>
+            <div class="app-title">JOIN CLUBICLES</div>
+        </div>
+        <div class="app-body">
+            <div class="club-header">
+                <h2 class="club-title">APPLICATION FORM</h2>
+                <div class="club-subtitle">Join the global co-working network</div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="joinForm">
+                    <div class="form-group">
+                        <label for="fullName">FULL NAME</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">EMAIL</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">PHONE</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reason">WHY DO YOU WANT TO JOIN CLUBICLES?</label>
+                        <select id="reason" required>
+                            <option value="">Select your reason</option>
+                            <option value="member-benefits">I want 30% discount & 7% ownership</option>
+                            <option value="space-owner">I want to list my space (Space Owner)</option>
+                            <option value="scout-team">I want to join the Scout Team</option>
+                            <option value="community">I want to connect with the community</option>
+                            <option value="other">Other reason</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">ADDITIONAL MESSAGE (Optional)</label>
+                        <textarea id="message" rows="3" placeholder="Tell us more about your interest"></textarea>
+                    </div>
+                    
+                    <div class="highlight">
+                        <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <input type="checkbox" id="policy1" required>
+                            <label for="policy1" style="display: inline; margin-left: 5px;">I accept the professional <strong>Co-working Environment</strong> policy</label>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center;">
+                            <input type="checkbox" id="policy2" required>
+                            <label for="policy2" style="display: inline; margin-left: 5px;">I am ready to invest ₹1 Lakh for the membership</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> SUBMIT APPLICATION
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-window" id="mainChat">
+        <div class="app-header">
+            <div class="app-buttons">
+                <div class="app-btn btn-red" onclick="closeApp('mainChat')"></div>
+                <div class="app-btn btn-yellow"></div>
+                <div class="app-btn btn-green"></div>
+            </div>
+            <div class="app-title">COMMUNITY CHAT</div>
+        </div>
+        <div class="app-body">
+            <div class="chat-display">
+                <div class="chat-message">
+                    <div class="chat-sender c-system">[SYSTEM]</div>
+                    Welcome to the CLUBICLES Community Chat. Be respectful and professional.
+                </div>
+                <div class="chat-message">
+                    <div class="chat-sender c-blue">[EMULATED] Chen Ming</div>
+                    Has anyone tried the new CLUBICLE in Goa? Planning to work from there next week.
+                </div>
+                <div class="chat-message">
+                    <div class="chat-sender c-red">[EMULATED] Sofia Gomez</div>
+                    Yes! I was there last week. The fiber optic is incredibly fast. Highly recommend.
+                </div>
+                <div class="chat-message">
+                    <div class="chat-sender c-green">[EMULATED] Grace Kiptum</div>
+                    @Chen Ming Make sure to book the private pod if you have calls, the main area is very collaborative (and busy!).
+                </div>
+                <div class="chat-message">
+                    <div class="chat-sender c-yellow">[EMULATED] Haruto Tanaka</div>
+                    Did everyone see the latest valuation report? Our 7% stake is looking very healthy.
+                </div>
+                <div class="chat-message">
+                    <div class="chat-sender c-violet">[EMULATED] Aanya Patel</div>
+                    That's amazing! So glad I joined.
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" placeholder="Type your message...">
+                <button>SEND</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-window" id="scoutChat">
+        <div class="app-header">
+            <div class="app-buttons">
+                <div class="app-btn btn-red" onclick="closeApp('scoutChat')"></div>
+                <div class="app-btn btn-yellow"></div>
+                <div class="app-btn btn-green"></div>
+            </div>
+            <div class="app-title">SCOUT TEAM LOG</div>
+        </div>
+        <div class="app-body">
+            <div class="chat-display">
+                <div class="chat-message">
+                    <div class="chat-sender c-system">[DISPATCH]</div>
+                    Welcome, Scouts. Log all potential locations here using DigiPin.
+                </div>
+                <div class="chat-message">
+                    <div class="chat-sender c-orange">[SCOUT] Leo</div>
+                    <span class="digipin">DigiPin: Leh, Ladakh (Old Market)</span><br>
+                    Dropped pin on a potential site. Amazing view, good foot traffic from tourists/nomads. Needs fiber check.
+                </div>
+                <div class="chat-message">
+                    <div class="chat-sender c-indigo">[SCOUT] Vikram</div>
+                    <span class="digipin">DigiPin: Coorg, Karnataka (Near Abbey Falls)</span><br>
+                    Found a large abandoned coffee estate bungalow. Perfect for a premium 'retreat' style CLUBICLE. Spoke to owner, he's interested.
+                </div>
+                <div class="chat-message">
+                    <div class="chat-sender c-system">[DISPATCH]</div>
+                    @Vikram Great find. Forwarding to ALPHA Team for legal checks.
+                </div>
+                <div class="chat-message">
+                    <div class="chat-sender c-red">[SCOUT] Sofia</div>
+                    <span class="digipin">DigiPin: Jaipur, Rajasthan (C-Scheme)</span><br>
+                    Old haveli, ground floor. Needs heavy renovation but has massive potential for a 'heritage' co-working space.
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" placeholder="Log new DigiPin...">
+                <button>LOG</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-window" id="alphaTeam">
+        <div class="app-header">
+            <div class="app-buttons">
+                <div class="app-btn btn-red" onclick="closeApp('alphaTeam')"></div>
+                <div class="app-btn btn-yellow"></div>
+                <div class="app-btn btn-green"></div>
+            </div>
+            <div class="app-title">ALPHA TEAM OPERATIONS</div>
+        </div>
+        <div class="app-body">
+            <h2 class="section-title" style="text-align: left; font-size: 1.5rem; margin-bottom: 1.5rem;">New Space Pipeline (Emulated)</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Space ID</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Est. Launch Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CL-LEH-001</td>
+                        <td>Leh, Ladakh (Old Market)</td>
+                        <td class="status-discussions">Discussions</td>
+                        <td>Q2 2026</td>
+                    </tr>
+                    <tr>
+                        <td>CL-CRG-001</td>
+                        <td>Coorg, Karnataka</td>
+                        <td class="status-docs">Documentation</td>
+                        <td>Q1 2026</td>
+                    </tr>
+                    <tr>
+                        <td>CL-JAI-001</td>
+                        <td>Jaipur, Rajasthan (C-Scheme)</td>
+                        <td class="status-legal">Legal and Agreements</td>
+                        <td>Q4 2025</td>
+                    </tr>
+                    <tr>
+                        <td>CL-GOA-002</td>
+                        <td>Anjuna, Goa</td>
+                        <td class="status-soon">Coming Soon</td>
+                        <td>Dec 1, 2025</td>
+                    </tr>
+                    <tr>
+                        <td>CL-SHL-001</td>
+                        <td>Shillong, Meghalaya</td>
+                        <td class="status-discussions">Discussions</td>
+                        <td>Q2 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="app-window" id="payments">
+        <div class="app-header">
+            <div class="app-buttons">
+                <div class="app-btn btn-red" onclick="closeApp('payments')"></div>
+                <div class="app-btn btn-yellow"></div>
+                <div class="app-btn btn-green"></div>
+            </div>
+            <div class="app-title">MEMBERSHIP TRANSACTIONS</div>
+        </div>
+        <div class="app-body">
+            <h2 class="section-title" style="text-align: left; font-size: 1.5rem; margin-bottom: 1.5rem;">Recent Transactions (Emulated)</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>TXN ID</th>
+                        <th>Member Name</th>
+                        <th>Amount (₹)</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TXN-9A34F...</td>
+                        <td>[EMULATED] R. Mehra</td>
+                        <td>1,00,000</td>
+                        <td>Membership</td>
+                        <td class="status-success">Success</td>
+                    </tr>
+                    <tr>
+                        <td>TXN-8B12E...</td>
+                        <td>[EMULATED] S. Iyer</td>
+                        <td>1,00,000</td>
+                        <td>Membership</td>
+                        <td class="status-success">Success</td>
+                    </tr>
+                    <tr>
+                        <td>TXN-7C55D...</td>
+                        <td>[EMULATED] A. Khan</td>
+                        <td>1,00,000</td>
+                        <td>Withdrawal</td>
+                        <td class="status-pending">Pending</td>
+                    </tr>
+                    <tr>
+                        <td>TXN-6D98G...</td>
+                        <td>[EMULATED] P. Singh</td>
+                        <td>-10,000</td>
+                        <td>Withdrawal Fee</td>
+                        <td class="status-success">Success</td>
+                    </tr>
+                    <tr>
+                        <td>TXN-5E21H...</td>
+                        <td>[EMULATED] P. Singh</td>
+                        <td>1,00,000</td>
+                        <td>Withdrawal</td>
+                        <td class="status-success">Success</td>
+                    </tr>
+                    <tr>
+                        <td>TXN-4F67J...</td>
+                        <td>[EMULATED] L. Kim</td>
+                        <td>1,00,000</td>
+                        <td>Membership</td>
+                        <td class="status-success">Success</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="app-window" id="updates">
+        <div class="app-header">
+            <div class="app-buttons">
+                <div class="app-btn btn-red" onclick="closeApp('updates')"></div>
+                <div class="app-btn btn-yellow"></div>
+                <div class="app-btn btn-green"></div>
+            </div>
+            <div class="app-title">SYSTEM STATUS & UPDATES</div>
+        </div>
+        <div class="app-body">
+            <h2 class="section-title" style="text-align: left; font-size: 1.5rem; margin-bottom: 1.5rem;">Update Log (Emulated)</h2>
+            <ul class="update-log">
+                <li>
+                    <span class="log-time">2025-11-02 08:30:00</span>
+                    <strong class="log-fix">[FIX]</strong>
+                    <div>Space: BLR-001 (Indiranagar) - Resolved booking conflict issue for Pod #3. System is nominal.</div>
+                </li>
+                <li>
+                    <span class="log-time">2025-11-01 17:00:00</span>
+                    <strong class="log-update">[UPDATE]</strong>
+                    <div>System: Pushed v1.3.2 of the booking API. Includes faster checkout for members.</div>
+                </li>
+                <li>
+                    <span class="log-time">2025-11-01 10:15:00</span>
+                    <strong class="log-issue">[ISSUE]</strong>
+                    <div>Space: MUM-002 (Bandra) - Internet provider reports local outage. Scout Team dispatched with mobile hotspots.</div>
+                </li>
+                <li>
+                    <span class="log-time">2025-10-31 20:00:00</span>
+                    <strong class="log-update">[UPDATE]</strong>
+                    <div>Space: DEL-001 (CP) - New espresso machine installed in the pantry.</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="app-window" id="calculator">
+        <div class="app-header">
+            <div class="app-buttons">
+                <div class="app-btn btn-red" onclick="closeApp('calculator')"></div>
+                <div class="app-btn btn-yellow"></div>
+                <div class="app-btn btn-green"></div>
+            </div>
+            <div class="app-title">MEMBERSHIP VALUATION CALCULATOR</div>
+        </div>
+        <div class="app-body">
+            <div class="club-header" style="margin-bottom: 2rem;">
+                <h2 class="club-title" style="font-size: 1.8rem;">Calculate Your 7% Stake</h2>
+                <div class="club-subtitle" style="font-size: 1.1rem;">Enter the total valuation and member count to see your share.</div>
+            </div>
+            
+            <div class="calc-container">
+                <div class="calc-inputs">
+                    <div class="calc-group">
+                        <label for="calcValuation">CLUBICLES Valuation (₹)</label>
+                        <input type="number" id="calcValuation" placeholder="e.g., 500000000" onkeyup="calculateValuation()">
+                    </div>
+                    <div class="calc-group">
+                        <label for="calcMembers">Total Club Members</label>
+                        <input type="number" id="calcMembers" placeholder="e.g., 500" onkeyup="calculateValuation()">
+                    </div>
+                </div>
+                <div class="calc-outputs">
+                    <div class="calc-output-box">
+                        <label>Total Member Investment (₹)</label>
+                        <div id="calcOutputInvestment">₹0</div>
+                    </div>
+                    <div class="calc-output-box">
+                        <label>7% Ownership Pool Value (₹)</label>
+                        <div id="calcOutputPool">₹0</div>
+                    </div>
+                    <div class="calc-output-box highlight">
+                        <label>Your ₹1 Lakh Share Value (₹)</label>
+                        <div id="calcOutputShare">₹0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            if (container.childElementCount > 0) return; // Don't create duplicates
+            for(let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = 
+                    Math.random() * 4 + 2 + 'px';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        // Terminal animation
+        function typeWriter(text, element, speed, callback) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function typing() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            
+            typing();
+        }
+        
+        // Simulate PC boot process
+        function simulateBoot() {
+            const bootScreen = document.getElementById('bootScreen');
+            const bootProgress = document.getElementById('bootProgress');
+            const bootStatus = document.getElementById('bootStatus');
+            const mainContent = document.getElementById('mainContent');
+            
+            const bootSteps = [
+                { progress: 10, status: "Checking hardware components..." },
+                { progress: 25, status: "Initializing memory modules..." },
+                { progress: 40, status: "Loading BIOS configuration..." },
+                { progress: 55, status: "Starting virtual environment..." },
+                { progress: 70, status: "Connecting to CLUBICLES network..." },
+                { progress: 85, status: "Authenticating system..." },
+                { progress: 95, status: "Finalizing startup sequence..." },
+                { progress: 100, status: "System ready" }
+            ];
+            
+            let currentStep = 0;
+            
+            function processBootStep() {
+                if (currentStep < bootSteps.length) {
+                    const step = bootSteps[currentStep];
+                    bootProgress.style.width = step.progress + '%';
+                    bootStatus.textContent = step.status;
+                    currentStep++;
+                    
+                    const delay = 300 + Math.random() * 700;
+                    setTimeout(processBootStep, delay);
+                } else {
+                    // Boot complete
+                    setTimeout(() => {
+                        bootScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            bootScreen.style.display = 'none';
+                            mainContent.style.display = 'flex';
+                            createParticles();
+                            
+                            setTimeout(() => {
+                                document.getElementById('terminalWindow').style.display = 'block';
+                                
+                                setTimeout(() => {
+                                    const cursor = document.querySelector('.cursor');
+                                    if (cursor) cursor.style.display = 'none';
+                                    
+                                    const newCommand = document.createElement('div');
+                                    newCommand.className = 'command';
+                                    newCommand.textContent = '> CONNECT USER';
+                                    document.getElementById('terminalBody').appendChild(newCommand);
+                                    
+                                    const newResponse = document.createElement('div');
+                                    newResponse.className = 'response';
+                                    document.getElementById('terminalBody').appendChild(newResponse);
+                                    
+                                    typeWriter(
+                                        "USER CONNECTED\n" +
+                                        "-----------------------\n" +
+                                        "CLUBICLES ID: CL-" + Math.floor(1000000000 + Math.random() * 9000000000) + "\n" +
+                                        "STATUS: <span style=\"color: var(--rose-gold);\">ACTIVE</span>\n\n" +
+                                        "> READY FOR PORTAL ENTRY",
+                                        newResponse,
+                                        30,
+                                        function() {
+                                            const cursor = document.createElement('span');
+                                            cursor.className = 'cursor';
+                                            newResponse.appendChild(cursor);
+                                            
+                                            document.getElementById('terminalBody').scrollTop = document.getElementById('terminalBody').scrollHeight;
+                                        }
+                                    );
+                                }, 1500);
+                            }, 500);
+                        }, 500);
+                    }, 500);
+                }
+            }
+            
+            processBootStep();
+        }
+        
+        // App Window Management
+        function openApp(appId) {
+            // Close all apps first
+            document.querySelectorAll('.app-window').forEach(app => {
+                app.style.display = 'none';
+            });
+            
+            // Open selected app
+            const app = document.getElementById(appId);
+            app.style.display = 'block';
+            
+            if (appId === 'memberPortal') {
+                generateMembers();
+            }
+        }
+        
+        function closeApp(appId) {
+            document.getElementById(appId).style.display = 'none';
+        }
+        
+        // Generate member profiles for Member Portal
+        function generateMembers() {
+            const membersGrid = document.getElementById('membersGrid');
+            const vibgyorColors = [
+                'var(--violet)', 'var(--indigo)', 'var(--blue)', 
+                'var(--green)', 'var(--yellow)', 'var(--orange)', 'var(--red)'
+            ];
+            const greyColor = 'var(--grey)';
+            
+            if (membersGrid.childElementCount > 0) return; // Don't regenerate
+            
+            membersGrid.innerHTML = '';
+            
+            const members = [
+                {
+                    name: "Bharath BholeY",
+                    role: "President & Founder",
+                    vehicle: "Harley Davidson",
+                    model: "Road Glide Special",
+                    bio: "Visionary entrepreneur behind CLUBICLES. Building a global network of community-owned co-working spaces.",
+                    stats: { Spaces: 25, Members: 1500, Years: 3 },
+                    social: "@the_ipnotec",
+                    color: 'var(--rose-gold)'
+                },
+                {
+                    name: "[EMULATED] Priya Verma",
+                    role: "Vice President",
+                    vehicle: "[EMULATED] Triumph Tiger 900",
+                    model: "Scout Team Coordinator",
+                    bio: "[EMULATED INFO] Manages the Alpha Team pipeline and coordinates the national Scout Team operations.",
+                    stats: { Spaces: 15, Scouts: 50, Years: 2 },
+                    social: "@priya_v_emu",
+                    color: greyColor
+                },
+                {
+                    name: "[EMULATED] Raj Sharma",
+                    role: "Treasury",
+                    vehicle: "[EMULATED] BMW GS 1250",
+                    model: "Finance & Legal",
+                    bio: "[EMULATED INFO] Oversees the 7% ownership pool, member investments, and legal frameworks for new spaces.",
+                    stats: { Stake: "7%", Txns: 8500, Years: 3 },
+                    social: "@raj_sharma_emu",
+                    color: greyColor
+                },
+                {
+                    name: "[EMULATED] Aanya Patel",
+                    role: "Alpha Team (Violet)",
+                    vehicle: "Royal Enfield Himalayan",
+                    model: "Scout - Western Ghats",
+                    bio: "[EMULATED INFO] Alpha team lead for Western India. Specializes in finding eco-friendly and sustainable locations.",
+                    stats: { Scouted: 42, Launched: 4, Years: 2 },
+                    social: "@aanya_p_emu",
+                    color: vibgyorColors[0]
+                },
+                {
+                    name: "[EMULATED] Vikram Singh",
+                    role: "Alpha Team (Indigo)",
+                    vehicle: "KTM 390 Adventure",
+                    model: "Scout - Himalayas",
+                    bio: "[EMULATED INFO] High-altitude scouting specialist. Responsible for opening our upcoming Leh and Manali locations.",
+                    stats: { Scouted: 28, Launched: 2, Years: 1 },
+                    social: "@vikram_s_emu",
+                    color: vibgyorColors[1]
+                },
+                {
+                    name: "[EMULATED] Chen Ming",
+                    role: "Alpha Team (Blue)",
+                    vehicle: "Honda CB500X",
+                    model: "Tech Ops Lead",
+                    bio: "[EMULATED INFO] Manages the tech stack, booking platform, and network infrastructure for all CLUBICLES.",
+                    stats: { Uptime: "99.9%", Tickets: 320, Years: 2 },
+                    social: "@chen_m_emu",
+                    color: vibgyorColors[2]
+                },
+                {
+                    name: "[EMULATED] Grace Kiptum",
+                    role: "Alpha Team (Green)",
+                    vehicle: "BMW F 850 GS",
+                    model: "Community Manager Lead",
+                    bio: "[EMULATED INFO] Manages all community managers and member relations. Ensures the CLUBICLES standard is met.",
+                    stats: { Events: 50, Members: 1500, Years: 2 },
+                    social: "@grace_k_emu",
+                    color: vibgyorColors[3]
+                },
+                {
+                    name: "[EMULATED] Haruto Tanaka",
+                    role: "Alpha Team (Yellow)",
+                    vehicle: "Suzuki V-Strom 650",
+                    model: "Space Owner Relations",
+                    bio: "[EMULATED INFO] Onboards new Space Owners and ensures their integration into the platform is seamless.",
+                    stats: { Owners: 120, Spaces: 200, Years: 1 },
+                    social: "@haruto_t_emu",
+                    color: vibgyorColors[4]
+                },
+                {
+                    name: "[EMULATED] Leo Mueller",
+                    role: "Alpha Team (Orange)",
+                    vehicle: "Ducati Multistrada V4",
+                    model: "Scout - Europe",
+                    bio: "[EMULATED INFO] Leading our first international expansion. Currently scouting locations in Portugal and Spain.",
+                    stats: { Scouted: 15, Launched: 0, Years: 1 },
+                    social: "@leo_m_emu",
+                    color: vibgyorColors[5]
+                },
+                {
+                    name: "[EMULATED] Sofia Gomez",
+                    role: "Alpha Team (Red)",
+                    vehicle: "Triumph Scrambler 1200",
+                    model: "Scout - South America",
+                    bio: "[EMULATED INFO] Establishing our network in South America, focusing on digital nomad hubs in Colombia and Brazil.",
+                    stats: { Scouted: 10, Launched: 0, Years: 1 },
+                    social: "@sofia_g_emu",
+                    color: vibgyorColors[6]
+                }
+            ];
+            
+            members.forEach(member => {
+                const card = document.createElement('div');
+                card.className = 'member-card';
+                card.innerHTML = `
+                    <div class="member-highlight" style="background: ${member.color}"></div>
+                    <div class="member-header">
+                        <h3 class="member-name">${member.name}</h3>
+                        <div class="member-role">${member.role}</div>
+                    </div>
+                    <div class="member-body">
+                        <div class="member-vehicle">
+                            <div class="vehicle-icon">
+                                <i class="fas fa-motorcycle"></i>
+                            </div>
+                            <div class="vehicle-info">
+                                <h4>${member.vehicle}</h4>
+                                <p>${member.model}</p>
+                            </div>
+                        </div>
+                        <p class="member-bio">${member.bio}</p>
+                        <div class="member-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">${Object.values(member.stats)[0]}</div>
+                                <div class="stat-label">${Object.keys(member.stats)[0]}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${Object.values(member.stats)[1]}</div>
+                                <div class="stat-label">${Object.keys(member.stats)[1]}</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${Object.values(member.stats)[2]}</div>
+                                <div class="stat-label">${Object.keys(member.stats)[2]}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="member-footer">
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                        <div class="member-tag" style="background: ${member.color}">${member.social}</div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.member-card').forEach(c => {
+                        if (c !== card) c.classList.remove('open');
+                    });
+                    card.classList.toggle('open');
+                });
+                
+                membersGrid.appendChild(card);
+            });
+        }
+        
+        // Form submission to WhatsApp
+        document.getElementById('joinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const reason = document.getElementById('reason').value;
+            const message = document.getElementById('message').value;
+            
+            const whatsappMessage = 
+                `Hello CLUBICLES Team,\n\n` +
+                `I'm interested in joining the CLUBICLES program.\n\n` +
+                `Name: ${fullName}\n` +
+                `Email: ${email}\n` +
+                `Phone: ${phone}\n` +
+                `Reason: ${document.getElementById('reason').options[document.getElementById('reason').selectedIndex].text}\n\n` +
+                `Message: ${message}\n\n` +
+                `I accept the professional Co-working Environment policy.\n` +
+                `I am ready to invest ₹1 Lakh for the membership.\n\n` +
+                `Please contact me to discuss this opportunity.`;
+            
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // NOTE: Replace with your actual WhatsApp number
+            window.open(`httpsa://wa.me/916292306090?text=${encodedMessage}`, '_blank');
+        });
+
+        // Calculator Logic
+        function formatCurrency(num) {
+            return new Intl.NumberFormat('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                maximumFractionDigits: 0
+            }).format(num);
+        }
+
+        function calculateValuation() {
+            const valuation = parseFloat(document.getElementById('calcValuation').value) || 0;
+            const members = parseFloat(document.getElementById('calcMembers').value) || 0;
+            
+            const investment = members * 100000;
+            const poolValue = valuation * 0.07;
+            const shareValue = (members > 0) ? (poolValue / members) : 0;
+
+            document.getElementById('calcOutputInvestment').textContent = formatCurrency(investment);
+            document.getElementById('calcOutputPool').textContent = formatCurrency(poolValue);
+            document.getElementById('calcOutputShare').textContent = formatCurrency(shareValue);
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            const pcPower = document.getElementById('pcPower');
+            const mainContent = document.getElementById('mainContent');
+            const bootScreen = document.getElementById('bootScreen');
+            
+            pcPower.addEventListener('click', function() {
+                if (mainContent.style.display === 'none') {
+                    // Power on
+                    this.classList.remove('off');
+                    this.classList.add('on');
+                    bootScreen.style.display = 'flex';
+                    setTimeout(simulateBoot, 500);
+                } else {
+                    // Power off
+                    this.classList.remove('on');
+                    this.classList.add('off');
+                    mainContent.style.display = 'none';
+                    bootScreen.style.display = 'flex';
+                    bootScreen.style.opacity = '1';
+                    document.getElementById('bootProgress').style.width = '0';
+                    document.getElementById('bootStatus').textContent = 'System powered off';
+                    
+                    document.querySelectorAll('.app-window').forEach(app => {
+                        app.style.display = 'none';
+                    });
+                }
+            });
+            
+            setTimeout(() => {
+                pcPower.click();
+            }, 1000);
+
+            // Initial calculation
+            calculateValuation();
+        });
+    </script>
+</body>
+</html>
