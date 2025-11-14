@@ -8,19 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --rose-gold: #8A2BE2; /* Changed to a Violet/Purple for CLUBICLES */
-            --rose-gold-light: #B873FF;
-            --rose-gold-dark: #6B00B3;
-            --dark-green: #011A10;
-            --darker-green: #001009;
-            --darkest-green: #000705;
+            --neon-green: #C1FF72;
+            --neon-green-light: #D9FFA8;
+            --neon-green-dark: #A3E04C;
+            --dark-bg: #000000;
+            --darker-bg: #0A0A0A;
+            --darkest-bg: #050505;
             --white: #FFFFFF;
             --black: #000000;
             --grey: #777777;
-            --grid-color: rgba(138, 43, 226, 0.1); /* Violet grid */
+            --grid-color: rgba(193, 255, 114, 0.1);
             --neon-glow: 0 0 10px currentColor;
             --pc-bezel: #111111;
-            --active-color: #8A2BE2; /* Active color is now Violet */
+            --active-color: #C1FF72;
             
             /* VIBGYOR Colors for Member Portal */
             --violet: #9400D3;
@@ -40,7 +40,7 @@
         
         body {
             font-family: 'Rajdhani', sans-serif;
-            background: var(--darkest-green);
+            background: var(--darkest-bg);
             color: var(--white);
             height: 100vh;
             overflow: hidden;
@@ -55,8 +55,8 @@
             width: 100%;
             height: 100vh;
             background: radial-gradient(circle at 50% 50%, 
-                var(--dark-green) 0%, 
-                var(--darkest-green) 70%);
+                var(--darker-bg) 0%, 
+                var(--darkest-bg) 70%);
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -83,7 +83,7 @@
         
         .particle {
             position: absolute;
-            background: rgba(138, 43, 226, 0.6); /* Violet particles */
+            background: rgba(193, 255, 114, 0.6);
             border-radius: 50%;
             animation: float 15s infinite linear;
         }
@@ -107,9 +107,9 @@
             height: 1px;
             background: linear-gradient(90deg, 
                 transparent, 
-                var(--rose-gold), 
+                var(--neon-green), 
                 transparent);
-            filter: drop-shadow(0 0 5px var(--rose-gold));
+            filter: drop-shadow(0 0 5px var(--neon-green));
             animation: scan 8s infinite linear;
             z-index: 1;
         }
@@ -126,7 +126,7 @@
             height: 90vh;
             background: var(--pc-bezel);
             border-radius: 15px;
-            box-shadow: 0 0 50px rgba(138, 43, 226, 0.3); /* Violet shadow */
+            box-shadow: 0 0 50px rgba(193, 255, 114, 0.3);
             position: relative;
             overflow: hidden;
             border: 2px solid var(--active-color);
@@ -137,7 +137,7 @@
             height: calc(100% - 100px);
             margin: 20px auto 10px;
             background: #000;
-            border: 1px solid rgba(138, 43, 226, 0.3); /* Violet border */
+            border: 1px solid rgba(193, 255, 114, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -147,8 +147,8 @@
             height: 100%;
             position: relative;
             background: radial-gradient(circle at 50% 50%, 
-                var(--dark-green) 0%, 
-                var(--darkest-green) 70%);
+                var(--darker-bg) 0%, 
+                var(--darkest-bg) 70%);
         }
         
         .pc-footer {
@@ -162,7 +162,7 @@
         .pc-branding {
             font-family: 'Orbitron', sans-serif;
             font-size: 1rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             letter-spacing: 2px;
         }
         
@@ -178,11 +178,11 @@
             width: 40px;
             height: 20px;
             background: rgba(51, 51, 51, 0.7);
-            border: 1px solid var(--rose-gold);
+            border: 1px solid var(--neon-green);
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
@@ -195,15 +195,15 @@
         }
         
         .pc-power.on {
-            background: rgba(138, 43, 226, 0.3);
-            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
-            color: var(--rose-gold);
-            text-shadow: 0 0 5px var(--rose-gold);
+            background: rgba(193, 255, 114, 0.3);
+            box-shadow: 0 0 10px rgba(193, 255, 114, 0.5);
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
         }
         
         .pc-power.off {
             background: rgba(51, 51, 51, 0.7);
-            color: rgba(138, 43, 226, 0.5);
+            color: rgba(193, 255, 114, 0.5);
         }
         
         .main-content {
@@ -228,8 +228,8 @@
         h1 {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(2.5rem, 6vw, 5rem);
-            color: var(--rose-gold);
-            text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+            color: var(--neon-green);
+            text-shadow: 0 0 30px rgba(193, 255, 114, 0.5);
             letter-spacing: 8px;
             font-weight: 700;
             text-transform: uppercase;
@@ -238,8 +238,8 @@
         }
         
         @keyframes pulse {
-            0% { text-shadow: 0 0 30px rgba(138, 43, 226, 0.5); }
-            100% { text-shadow: 0 0 50px rgba(138, 43, 226, 0.8); }
+            0% { text-shadow: 0 0 30px rgba(193, 255, 114, 0.5); }
+            100% { text-shadow: 0 0 50px rgba(193, 255, 114, 0.8); }
         }
         
         .tagline {
@@ -254,11 +254,11 @@
         .terminal-window {
             width: 90%;
             max-width: 800px;
-            height: 35vh; /* Adjusted height */
+            height: 35vh;
             background: rgba(10, 10, 10, 0.7);
-            border: 1px solid rgba(138, 43, 226, 0.3);
+            border: 1px solid rgba(193, 255, 114, 0.3);
             border-radius: 8px;
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+            box-shadow: 0 0 30px rgba(193, 255, 114, 0.2);
             overflow: hidden;
             position: relative;
         }
@@ -266,7 +266,7 @@
         .terminal-header {
             background: rgba(0, 0, 0, 0.5);
             padding: 0.5rem 1rem;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            border-bottom: 1px solid rgba(193, 255, 114, 0.2);
             display: flex;
             align-items: center;
         }
@@ -292,7 +292,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 0.9rem;
             letter-spacing: 1px;
-            color: var(--rose-gold);
+            color: var(--neon-green);
         }
         
         .terminal-body {
@@ -305,7 +305,7 @@
         }
         
         .command {
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 0.5rem;
         }
         
@@ -318,7 +318,7 @@
             display: inline-block;
             width: 8px;
             height: 16px;
-            background-color: var(--rose-gold);
+            background-color: var(--neon-green);
             animation: blink 1s infinite;
             vertical-align: middle;
         }
@@ -330,22 +330,22 @@
         
         .enter-btn {
             background: transparent;
-            border: 2px solid var(--rose-gold);
-            color: var(--rose-gold);
-            padding: 0.6rem 1.5rem; /* Adjusted padding */
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 0.6rem 1.5rem;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem; /* Adjusted font size */
+            font-size: 0.9rem;
             letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin: 0.4rem; /* Adjusted margin */
+            margin: 0.4rem;
             position: relative;
             overflow: hidden;
         }
         
         .enter-btn:hover {
-            background: rgba(138, 43, 226, 0.1);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+            background: rgba(193, 255, 114, 0.1);
+            box-shadow: 0 0 20px rgba(193, 255, 114, 0.3);
         }
         
         .enter-btn::before {
@@ -355,7 +355,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.4), transparent);
+            background: linear-gradient(90deg, transparent, rgba(193, 255, 114, 0.4), transparent);
             transition: all 0.5s ease;
         }
         
@@ -378,7 +378,7 @@
         .boot-logo {
             font-family: 'Orbitron', sans-serif;
             font-size: 3rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 2rem;
             text-align: center;
         }
@@ -397,7 +397,7 @@
             top: 0;
             height: 100%;
             width: 0;
-            background: var(--rose-gold);
+            background: var(--neon-green);
             transition: width 0.3s ease;
         }
         
@@ -419,7 +419,7 @@
             background: rgba(10, 10, 10, 0.95);
             border: 1px solid var(--active-color);
             border-radius: 8px;
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+            box-shadow: 0 0 30px rgba(193, 255, 114, 0.2);
             overflow: hidden;
             display: none;
             z-index: 20;
@@ -428,7 +428,7 @@
         .app-header {
             background: rgba(0, 0, 0, 0.5);
             padding: 0.8rem 1.2rem;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            border-bottom: 1px solid rgba(193, 255, 114, 0.2);
             display: flex;
             align-items: center;
         }
@@ -451,7 +451,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 1rem;
             letter-spacing: 1px;
-            color: var(--rose-gold);
+            color: var(--neon-green);
         }
         
         .app-body {
@@ -480,8 +480,8 @@
         .portal-title {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--rose-gold);
-            text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+            color: var(--neon-green);
+            text-shadow: 0 0 30px rgba(193, 255, 114, 0.5);
             letter-spacing: 4px;
             font-weight: 700;
             text-transform: uppercase;
@@ -501,7 +501,7 @@
             margin: 0 auto 2rem;
             padding: 1.5rem;
             background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--rose-gold);
+            border: 1px solid var(--neon-green);
             border-radius: 8px;
             position: relative;
             overflow: hidden;
@@ -510,7 +510,7 @@
         .vision-statement h2 {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.8rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             text-align: center;
             margin-bottom: 1rem;
             text-transform: uppercase;
@@ -524,7 +524,7 @@
         }
         
         .vision-statement .highlight {
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -547,14 +547,14 @@
             overflow: hidden;
             position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(138, 43, 226, 0.3);
+            border: 1px solid rgba(193, 255, 114, 0.3);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             cursor: pointer;
         }
         
         .member-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+            box-shadow: 0 10px 20px rgba(193, 255, 114, 0.2);
         }
         
         .member-highlight {
@@ -570,18 +570,18 @@
         .member-header {
             padding: 1rem;
             position: relative;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            border-bottom: 1px solid rgba(193, 255, 114, 0.2);
         }
         
         .member-name {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.4rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 0.3rem;
         }
         
         .member-role {
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -607,25 +607,25 @@
         .vehicle-icon {
             width: 50px;
             height: 50px;
-            background: rgba(138, 43, 226, 0.1);
+            background: rgba(193, 255, 114, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 0.8rem;
             font-size: 1.3rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
         }
         
         .vehicle-info h4 {
             font-size: 1.1rem;
             margin-bottom: 0.2rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
         }
         
         .vehicle-info p {
             font-size: 0.85rem;
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
         }
         
         .member-bio {
@@ -646,13 +646,13 @@
         .stat-value {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.3rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 0.2rem;
         }
         
         .stat-label {
             font-size: 0.75rem;
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
             text-transform: uppercase;
         }
         
@@ -665,14 +665,14 @@
         }
         
         .social-links a {
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-right: 0.8rem;
             font-size: 1.1rem;
             transition: color 0.3s ease;
         }
         
         .social-links a:hover {
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
         }
         
         .member-tag {
@@ -697,7 +697,7 @@
         label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             font-weight: bold;
         }
         
@@ -705,7 +705,7 @@
             width: 100%;
             padding: 0.8rem;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--rose-gold);
+            border: 1px solid var(--neon-green);
             border-radius: 4px;
             color: white;
             font-family: inherit;
@@ -718,8 +718,8 @@
         }
 
         .submit-btn {
-            background: var(--rose-gold);
-            color: var(--darkest-green);
+            background: var(--neon-green);
+            color: var(--darkest-bg);
             border: none;
             padding: 1rem 2rem;
             font-family: 'Orbitron', sans-serif;
@@ -735,8 +735,8 @@
         }
         
         .submit-btn:hover {
-            background: var(--rose-gold-light);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            background: var(--neon-green-light);
+            box-shadow: 0 0 20px rgba(193, 255, 114, 0.5);
         }
         
         /* Persistent Tab Styles */
@@ -746,7 +746,7 @@
             left: 0;
             width: 100%;
             background: rgba(0, 0, 0, 0.9);
-            border-top: 2px solid var(--rose-gold);
+            border-top: 2px solid var(--neon-green);
             z-index: 100;
             display: flex;
             justify-content: center;
@@ -765,7 +765,7 @@
         
         .tab-logo {
             font-family: 'Orbitron', sans-serif;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             font-size: 1.2rem;
             font-weight: bold;
             letter-spacing: 2px;
@@ -778,14 +778,14 @@
         }
         
         .founder-highlight {
-            color: var(--rose-gold);
+            color: var(--neon-green);
             font-weight: bold;
-            text-shadow: 0 0 5px rgba(138, 43, 226, 0.5);
+            text-shadow: 0 0 5px rgba(193, 255, 114, 0.5);
         }
         
         .tab-button {
-            background: var(--rose-gold);
-            color: var(--darkest-green);
+            background: var(--neon-green);
+            color: var(--darkest-bg);
             border: none;
             padding: 0.8rem 1.5rem;
             font-family: 'Orbitron', sans-serif;
@@ -799,8 +799,8 @@
         }
         
         .tab-button:hover {
-            background: var(--rose-gold-light);
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            background: var(--neon-green-light);
+            box-shadow: 0 0 15px rgba(193, 255, 114, 0.5);
         }
         
         /* NEW BENEFITS STYLES */
@@ -812,14 +812,14 @@
         .club-title {
             font-family: 'Orbitron', sans-serif;
             font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 1rem;
             text-transform: uppercase;
         }
         
         .club-subtitle {
             font-size: clamp(1rem, 2vw, 1.5rem);
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
             margin-bottom: 2rem;
         }
         
@@ -833,7 +833,7 @@
         
         .stat-box {
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--rose-gold);
+            border: 1px solid var(--neon-green);
             padding: 1.5rem;
             border-radius: 8px;
             text-align: center;
@@ -843,7 +843,7 @@
         .stat-number {
             font-size: 3rem;
             font-weight: 700;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 0.5rem;
             font-family: 'Orbitron', sans-serif;
         }
@@ -859,7 +859,7 @@
             max-width: 800px;
             margin: 2rem auto;
             padding: 1.5rem;
-            border-left: 4px solid var(--rose-gold);
+            border-left: 4px solid var(--neon-green);
             background: rgba(0, 0, 0, 0.3);
             font-style: italic;
             font-size: 1.4rem;
@@ -871,30 +871,30 @@
             padding: 1.5rem;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
-            border: 1px solid var(--rose-gold);
+            border: 1px solid var(--neon-green);
         }
         
         .section-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 2rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--rose-gold);
+            border-bottom: 1px solid var(--neon-green);
         }
         
         .highlight {
-            background: rgba(138, 43, 226, 0.1);
+            background: rgba(193, 255, 114, 0.1);
             padding: 1rem;
             border-radius: 6px;
             margin: 1rem 0;
-            border-left: 3px solid var(--rose-gold);
+            border-left: 3px solid var(--neon-green);
         }
         
         .scenario {
             margin-bottom: 2rem;
             padding-bottom: 1rem;
-            border-bottom: 1px dashed var(--rose-gold);
+            border-bottom: 1px dashed var(--neon-green);
         }
 
         .scenario:last-child {
@@ -904,14 +904,14 @@
         
         .scenario-title {
             font-family: 'Orbitron', sans-serif;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
         
         .scenario-value {
             font-weight: bold;
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
             margin-bottom: 0.5rem;
         }
         
@@ -930,7 +930,7 @@
             content: "•";
             position: absolute;
             left: 0;
-            color: var(--rose-gold);
+            color: var(--neon-green);
         }
         
         .team-grid {
@@ -942,7 +942,7 @@
         
         .team-card {
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--rose-gold);
+            border: 1px solid var(--neon-green);
             border-radius: 8px;
             padding: 1.5rem;
             text-align: center;
@@ -951,18 +951,18 @@
         
         .team-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+            box-shadow: 0 10px 20px rgba(193, 255, 114, 0.2);
         }
         
         .team-icon {
             font-size: 2rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 1rem;
         }
         
         .team-role {
             font-weight: 700;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 0.5rem;
         }
         
@@ -976,7 +976,7 @@
         
         .benefit-card {
             background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--rose-gold);
+            border: 1px solid var(--neon-green);
             border-radius: 8px;
             padding: 1.5rem;
             transition: all 0.3s ease;
@@ -986,19 +986,19 @@
         
         .benefit-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+            box-shadow: 0 10px 20px rgba(193, 255, 114, 0.2);
         }
         
         .benefit-icon {
             font-size: 2.5rem;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             margin-bottom: 1rem;
             text-align: center;
         }
         
         .benefit-title {
             font-family: 'Orbitron', sans-serif;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             font-size: 1.5rem;
             text-align: center;
             margin-bottom: 1rem;
@@ -1019,23 +1019,21 @@
             content: "✓";
             position: absolute;
             left: 0;
-            color: var(--rose-gold);
+            color: var(--neon-green);
             font-weight: bold;
         }
         
         .highlight-card {
-            background: rgba(138, 43, 226, 0.1);
-            border: 2px solid var(--rose-gold);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+            background: rgba(193, 255, 114, 0.1);
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 20px rgba(193, 255, 114, 0.3);
         }
         
         .highlight-card .benefit-icon {
-            color: var(--rose-gold-light);
-            text-shadow: 0 0 10px var(--rose-gold);
+            color: var(--neon-green-light);
+            text-shadow: 0 0 10px var(--neon-green);
         }
         
-        /* --- NEW STYLES FOR CLUBICLES --- */
-
         /* Chat Window Styles */
         .chat-display {
             height: calc(100% - 60px);
@@ -1063,8 +1061,8 @@
             margin-right: 10px;
         }
         .chat-input-area button {
-            background: var(--rose-gold);
-            color: var(--darkest-green);
+            background: var(--neon-green);
+            color: var(--darkest-bg);
             border: none;
             padding: 0.8rem 1.5rem;
             font-family: 'Orbitron', sans-serif;
@@ -1082,17 +1080,17 @@
         .c-yellow { color: var(--yellow); }
         .c-orange { color: var(--orange); }
         .c-red { color: var(--red); }
-        .c-system { color: var(--rose-gold-light); }
+        .c-system { color: var(--neon-green-light); }
 
         /* DigiPin Style */
         .digipin {
             display: inline-block;
-            background: rgba(138, 43, 226, 0.2);
-            border: 1px solid var(--rose-gold);
+            background: rgba(193, 255, 114, 0.2);
+            border: 1px solid var(--neon-green);
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
             font-weight: bold;
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
         }
 
         /* Ops & Finance Table Styles */
@@ -1103,13 +1101,13 @@
             font-size: 0.95rem;
         }
         .data-table th, .data-table td {
-            border: 1px solid rgba(138, 43, 226, 0.3);
+            border: 1px solid rgba(193, 255, 114, 0.3);
             padding: 0.75rem;
             text-align: left;
         }
         .data-table th {
-            background: rgba(138, 43, 226, 0.2);
-            color: var(--rose-gold-light);
+            background: rgba(193, 255, 114, 0.2);
+            color: var(--neon-green-light);
             font-family: 'Orbitron', sans-serif;
         }
         .data-table tr:nth-child(even) {
@@ -1131,7 +1129,7 @@
         .update-log li {
             margin-bottom: 1rem;
             padding-bottom: 1rem;
-            border-bottom: 1px dashed rgba(138, 43, 226, 0.3);
+            border-bottom: 1px dashed rgba(193, 255, 114, 0.3);
         }
         .update-log .log-fix { color: var(--green); }
         .update-log .log-update { color: var(--blue); }
@@ -1162,13 +1160,13 @@
         }
         .calc-output-box {
             background: rgba(0,0,0,0.3);
-            border: 1px solid var(--rose-gold);
+            border: 1px solid var(--neon-green);
             padding: 1rem;
             border-radius: 8px;
         }
         .calc-output-box label {
             font-size: 0.9rem;
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
             text-transform: uppercase;
         }
         .calc-output-box div {
@@ -1178,10 +1176,10 @@
             margin-top: 0.5rem;
         }
         .calc-output-box.highlight {
-            background: rgba(138, 43, 226, 0.1);
+            background: rgba(193, 255, 114, 0.1);
         }
         .calc-output-box.highlight div {
-            color: var(--rose-gold-light);
+            color: var(--neon-green-light);
         }
 
 
@@ -1323,7 +1321,7 @@
 CLUBICLES OS v1.0
 -----------------------
 LOADING GLOBAL COWORKING ECOSYSTEM...
-<span style="color: var(--rose-gold);">SYSTEM READY</span>
+<span style="color: var(--neon-green);">SYSTEM READY</span>
                                 </div>
                                 
                                 <div class="command">> DISPLAY WELCOME MESSAGE</div>
@@ -1333,10 +1331,10 @@ WELCOME TO CLUBICLES
 COWORKING SPACES FROM ANY CORNER OF THE WORLD
 WHERE MOBILITY MEETS COLLABORATION
 
-<span style="color: var(--rose-gold);">MEMBERSHIP PROGRAM:</span>
+<span style="color: var(--neon-green);">MEMBERSHIP PROGRAM:</span>
 ₹1 LAKH INVESTMENT • 30% BOOKING DISCOUNT • 7% OWNERSHIP POOL
 
-<span style="color: var(--rose-gold);">AVAILABLE COMMANDS:</span>
+<span style="color: var(--neon-green);">AVAILABLE COMMANDS:</span>
 > MEMBER PORTAL
 > MEMBERSHIP BENEFITS
 > JOIN CLUBICLES
@@ -1974,7 +1972,7 @@ WHERE MOBILITY MEETS COLLABORATION
                                         "USER CONNECTED\n" +
                                         "-----------------------\n" +
                                         "CLUBICLES ID: CL-" + Math.floor(1000000000 + Math.random() * 9000000000) + "\n" +
-                                        "STATUS: <span style=\"color: var(--rose-gold);\">ACTIVE</span>\n\n" +
+                                        "STATUS: <span style=\"color: var(--neon-green);\">ACTIVE</span>\n\n" +
                                         "> READY FOR PORTAL ENTRY",
                                         newResponse,
                                         30,
@@ -2038,7 +2036,7 @@ WHERE MOBILITY MEETS COLLABORATION
                     bio: "Visionary entrepreneur behind CLUBICLES. Building a global network of community-owned co-working spaces.",
                     stats: { Spaces: 25, Members: 1500, Years: 3 },
                     social: "@the_ipnotec",
-                    color: 'var(--rose-gold)'
+                    color: 'var(--neon-green)'
                 },
                 {
                     name: "[EMULATED] Priya Verma",
@@ -2212,7 +2210,7 @@ WHERE MOBILITY MEETS COLLABORATION
             const encodedMessage = encodeURIComponent(whatsappMessage);
             
             // NOTE: Replace with your actual WhatsApp number
-            window.open(`httpsa://wa.me/916292306090?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/916292306090?text=${encodedMessage}`, '_blank');
         });
 
         // Calculator Logic
